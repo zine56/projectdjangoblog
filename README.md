@@ -2,6 +2,10 @@
 
 blog para la clase de coderhouse, hecho con python , django, sqlite, html y javascript
 
+unico integrante: Ricardo Ovando
+
+
+
 ## Uso
 
 para iniciar el servidor local
