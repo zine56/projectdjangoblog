@@ -1,0 +1,12 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block titulo%} No hay páginas aún {% endblock titulo%}
+{% block body %}
+<body>
+    <div class="container">
+        <h1>No hay páginas aún</h1>
+        <a href="{% url 'login' %}" >Ir al Login</a>
+    </div>
+</body>
+
+{% endblock body %}

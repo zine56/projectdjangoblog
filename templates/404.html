@@ -1,0 +1,13 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block titulo%} 404 No encontrado! {% endblock titulo%}
+{% block body %}
+<body>
+    <div class="container">
+        <h1>404 No encontrado!</h1>
+        <h3>Blog</h3>
+        <a href="{% url 'blog:index' %}" >Ir a Home</a>
+    </div>
+</body>
+
+{% endblock body %}

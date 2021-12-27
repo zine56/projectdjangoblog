@@ -1,0 +1,216 @@
+
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+
+<style>
+/***
+Bootstrap Line Tabs by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+/* Tabs panel */
+.tabbable-panel {
+  border:1px solid #eee;
+  padding: 10px;
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+  border: none;
+  margin: 0px;
+}
+.tabbable-line > .nav-tabs > li {
+  margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+  border-bottom: 4px solid #fbcdcf;
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+  border-bottom: 4px solid #f3565d;
+  position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+  border: 0;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+  color: #404040;
+}
+.tabbable-line > .tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+  padding-bottom: 0;
+}
+
+/* Below tabs mode */
+
+.tabbable-line.tabs-below > .nav-tabs > li {
+  border-top: 4px solid transparent;
+}
+.tabbable-line.tabs-below > .nav-tabs > li > a {
+  margin-top: 0;
+}
+.tabbable-line.tabs-below > .nav-tabs > li:hover {
+  border-bottom: 0;
+  border-top: 4px solid #fbcdcf;
+}
+.tabbable-line.tabs-below > .nav-tabs > li.active {
+  margin-bottom: -2px;
+  border-bottom: 0;
+  border-top: 4px solid #f3565d;
+}
+.tabbable-line.tabs-below > .tab-content {
+  margin-top: -10px;
+  border-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+</style>
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!--
+Bootstrap Line Tabs by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container">
+    <div class="row">
+		<div class="col-md-12">
+			<div class="tabbable-panel">
+				<div class="tabbable-line">
+					<ul class="nav nav-tabs ">
+						<li class="active">
+							<a href="#tab_default_1" data-toggle="tab">
+                                Perfil de Usuario </a>
+						</li>
+						<li>
+							<a href="#tab_default_2" data-toggle="tab">
+							Cambiar Contraseña</a>
+						</li>
+						<li>
+							<a href="#tab_default_2" data-toggle="tab">
+							Mis Posts</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab_default_1">
+                            <form method="post" action="{% url 'blog:auth' %}">
+                                {% csrf_token %}
+                                {% for field in user_form.visible_fields %}
+                                    <div> {{ field.name }} </div>
+                                    <div> {{ field.errors }} </div>
+                                    <div> {{ field }} </div>                                
+                                {% endfor %}
+                                {% for field in profile_form.visible_fields %}
+                                   <div> {{ field.name }} </div>
+                                   <div> {{ field.errors }} </div>
+                                   <div> {{ field }} </div>
+                                {% endfor %}                                
+                                <button type="submit">Guardar Cambios</button>
+                            </form>
+						</div>
+						<div class="tab-pane" id="tab_default_2">
+
+						</div>
+                        <div class="tab-pane" id="tab_default_3">
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<!--ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#home">Perfil de Usuario</a></li>
+    <li><a data-toggle="tab" href="#menu1">Cambiar Contraseña</a></li>
+</ul>
+  
+
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <form method="post">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <button type="submit">Guardar Cambios</button>
+          </form>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Some content in menu 1.</p>
+    </div>
+  </div-->
+
+
+
+
+<!--form method="post" action="{% url 'blog:profile' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label for="id_nombre">Nombre:</label></td>
+            <td><input type="text" name="nombre" required="true" id="id_nombre" class=""></td>
+        </tr>
+        <tr>
+            <td><label for="id_descripcion">Descripcion:</label></td>
+            <td><input type="text" name="descripcion" required="false" id="id_descripcion" class=""></td>
+        </tr>
+        <tr>
+            <td><label for="id_imagen">Imagen:</label></td>
+            <td><input type="image" name="imagen" required="false" id="id_imagen" class=""></td>
+        </tr>
+        <tr>
+            <td><label for="id_link">Link:</label></td>
+            <td><input type="text" name="link"required="false" id="id_link" class=""></td>
+        </tr>
+        <tr>
+            <td><label for="id_email">Email:</label></td>
+            <td><input type="email" name="email"  required="true" id="id_email" class=""></td>
+        </tr>
+    </table>
+    <input type="submit" value="guardar cambios" />
+  </form-->
+
+
+{% endblock %}

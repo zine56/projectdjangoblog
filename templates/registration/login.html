@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+  {% if form.errors %}
+    <p>{{ form.errors }}</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'blog:auth' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label for="id_username">Usuario:</label></td>
+            <td><input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" class=""></td>
+          </tr>
+          <tr>
+            <td><label for="id_password">Password:</label></td>
+            <td><input type="password" name="password" autocomplete="current-password" required="" id="id_password" class=""></td>
+        </tr>
+    </table>
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <!--p><a href="{% url 'password_reset' %}">Lost password?</a></p-->
+
+{% endblock %}
