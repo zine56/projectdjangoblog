@@ -2,34 +2,39 @@
 
 blog para la clase de coderhouse, hecho con python , django, sqlite, html y javascript
 
+unico integrante: Ricardo Ovando
+
+
+
 ## Uso
 
-It's best to install Python projects in a Virtual Environment. Once you have set up a VE, clone this project
+para iniciar el servidor local
 
-```
-git clone https://github.com/jngumy/blog_prod.git
-```
-Then
+#bajar proyecto
 
-```
-cd blog_prod
-```
-Once inside the project's folder, 
+git clone https://github.com/zine56/projectdjangoblog.git
 
-```
-pip install -r requirements.txt #install required packages
-python manage.py migrate # run first migration
-```
+#entrar a proyecto
 
-You can set up a superuser account to manage your posts through the admin page, using the following command:
+cd projectdjangoblog
 
-```python
+#instalar dependencias
+
+pip install -r requirements.txt 
+
+#si instalas en windows la unica dependencia que dio problemas fue la pillow, solo pude instalarla usando easy_install Pillow
+
+#crear la bd
+
+python manage.py migrate 
+
+
+#crear un usuario admin
+
 python manage.py createsuperuser
-```
 
-To start the server, use the following (by default on localhost:8000):
 
-```python
+#correr el servidor local
+
 python manage.py runserver
-```
 
