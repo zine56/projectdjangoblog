@@ -130,7 +130,7 @@ Licensed under MIT
                             <form method="post" action="{% url 'blog:auth' %}">
                                 {% csrf_token %}
                                 {% for field in user_form.visible_fields %}
-                                    <div> {{ field.name }} </div>
+                                    <div> {{ field.label }} </div>
                                     <div> {{ field.errors }} </div>
                                     <div> {{ field }} </div>                                
                                 {% endfor %}

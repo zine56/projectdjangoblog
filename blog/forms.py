@@ -16,7 +16,10 @@ class PictureWidget(forms.widgets.Widget):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('last_name', 'email')
+        fields = ('email','last_name')
+        labels = {}
+        labels['last_name'] = "Apellidos"
+        labels['email'] = "Email"
 
 class UserProfileForm(forms.ModelForm):
     class Meta:

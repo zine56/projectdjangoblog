@@ -21,9 +21,12 @@ from .utils import *
 class Login(View):
     def get(self, request):
         if request.user.is_authenticated():
-            profile_form = UserProfileForm(instance=request.user)
+            usr_id = request.session.get('_auth_user_id')
+            user = User.objects.get(id=usr_id)
+            profile_form = UserProfileForm(instance=user.usuario)
+            user_form = UserForm(instance=user)
             return render(request, 'registration/profile.html', {
-                #'user_form': user_form,
+                'user_form': user_form,
                 'profile_form': profile_form
             })           
         else:
@@ -39,9 +42,12 @@ class Login(View):
             }
             return render(request, 'registration/login.html', contexto)
         if request.user is not None and request.user.is_authenticated:
-            profile_form = UserProfileForm(instance=request.user)
+            usr_id = request.session.get('_auth_user_id')
+            user = User.objects.get(id=usr_id)
+            profile_form = UserProfileForm(instance=user.usuario)
+            user_form = UserForm(instance=user)
             return render(request, 'registration/profile.html', {
-                #'user_form': user_form,
+                'user_form': user_form,
                 'profile_form': profile_form
             })  
         try:
@@ -51,20 +57,18 @@ class Login(View):
               if user.is_active: 
                 login(request, user)
                 #pprint(user)
-                #request.session['usuario'] = user.usuario
+                #request.session['usuario'] = user
                 #logging.debug(request.session['usuario'])
-                logging.info(request.session.get('_auth_user_id'))
+                #logging.info(request.session.get('_auth_user_id'))
                 #return HttpResponseRedirect('/accounts/profile/')
                 #user_form = UserForm(instance=request.user)
-
 
                 profile_form = UserProfileForm(instance=user.usuario)
                 user_form = UserForm(instance=user)
 
                 return render(request, 'registration/profile.html', {
                     'user_form': user_form,
-                    'profile_form': profile_form,
-                    'user':user.usuario
+                    'profile_form': profile_form
                 })
               else:
                 contexto = {
@@ -91,24 +95,26 @@ class Login(View):
 class Profile(View):
     def get(self, request, *args, **kwargs):
         #pprint(request.session['usuario'])
-        #logging.debug(request.session['usuario'])
-        user_form = UserForm(instance=request.user)
-        profile_form = UserProfileForm(instance=request.user.usuario)            
+        #logging.debug(request.session.get('usuario')
+        usr_id = request.session.get('_auth_user_id')
+        user = User.objects.get(id=usr_id)
+        profile_form = UserProfileForm(instance=user)
+        user_form = UserForm(instance=user.usuario)        
         contexto = {
             'user_form': user_form,
-            'profile_form': profile_form,
-            'user':request.session['usuario']
+            'profile_form': profile_form
         }
         return render(request, 'registration/profile.html', contexto)
     def post(self, request, *args, **kwargs):
         #logging.debug(request.session['usuario'])
         #pprint(request.session['usuario'])
-        user_form = UserForm(instance=request.user)
-        profile_form = UserProfileForm(instance=request.user.usuario)            
+        usr_id = request.session.get('_auth_user_id')
+        user = User.objects.get(id=usr_id)
+        profile_form = UserProfileForm(instance=user.usuario)
+        user_form = UserForm(instance=user)           
         contexto = {
             'user_form': user_form,
             'profile_form': profile_form,
-            'user':request.session['usuario']
         }
         return render(request, 'registration/profile.html', contexto)
 
